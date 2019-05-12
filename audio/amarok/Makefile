@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	audio kde
 MASTER_SITES=	KDE/stable/amarok/${DISTVERSION}
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@malavon.eu
 COMMENT=	KDE music player
 WWW=		https://amarok.kde.org/
 
@@ -32,7 +32,7 @@ USE_QT=		base declarative svg tools
 USE_XORG=	ice sm x11 xext
 USE_LDCONFIG=	yes
 
-CPE_VENDOR=	kde
+# CPE_VENDOR=	kde
 
 CMAKE_ARGS=	-DCMAKE_DISABLE_FIND_PACKAGE_Googlemock=True
 
