@@ -1,0 +1,11 @@
+include/restclient-cpp/connection.h
+include/restclient-cpp/helpers.h
+include/restclient-cpp/restclient.h
+include/restclient-cpp/version.h
+lib/cmake/restclient-cpp/restclient-cppConfig.cmake
+lib/cmake/restclient-cpp/restclient-cppConfigVersion.cmake
+lib/cmake/restclient-cpp/restclient-cppTargets-%%CMAKE_BUILD_TYPE%%.cmake
+lib/cmake/restclient-cpp/restclient-cppTargets.cmake
+lib/librestclient-cpp.so
+lib/librestclient-cpp.so.2.1.1
+
