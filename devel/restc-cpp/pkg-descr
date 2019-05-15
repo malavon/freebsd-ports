@@ -1,0 +1,4 @@
+This is a simple REST client for C++. It wraps libcurl for HTTP requests.
+
+WWW: https://github.com/mrtazz/restclient-cpp
+

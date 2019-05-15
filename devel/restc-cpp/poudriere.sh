@@ -1,0 +1,2 @@
+#!/bin/sh
+poudriere testport -j amd64 $1 -o devel/restc-cpp
