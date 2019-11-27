@@ -1,0 +1,11 @@
+--- deps/yaracpp/CMakeLists.txt.orig	2019-03-18 15:44:07 UTC
++++ deps/yaracpp/CMakeLists.txt
+@@ -14,6 +14,8 @@ if(YARACPP_LOCAL_DIR)
+ 		DOWNLOAD_COMMAND ""
+ 		SOURCE_DIR "${YARACPP_LOCAL_DIR}"
+ 		CMAKE_ARGS
++			# FreeBSD patch: yara shouldn't be downloaded but be run from a local directory
++			-DYARA_LOCAL_DIR=${YARA_LOCAL_DIR}
+ 			# This does not work on MSVC, but may be useful on Linux.
+ 			-DCMAKE_BUILD_TYPE=Release
+ 			# Force the use of the same compiler as used to build the top-level
