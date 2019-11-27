@@ -1,0 +1,22 @@
+--- ../yaramod-3.0.0b0/deps/pog/CMakeLists.txt.orig	2019-11-18 16:20:32.000000000 +0100
++++ ../yaramod-3.0.0b0/deps/pog/CMakeLists.txt	2019-11-28 16:30:21.009055000 +0100
+@@ -14,15 +14,16 @@
+ set(POG_INCLUDE_DIR ${POG_INSTALL_DIR}/include)
+ 
+ ExternalProject_Add(pog-project
+-   URL https://github.com/metthal/pog/archive/v0.5.0.zip  #...
+-   URL_HASH SHA256=2f978dd6a4b90ef4322c345b0d9c9eb0b5ba2fdb8d2f4c035105ae0caa0ca8d3
+-   DOWNLOAD_NAME pog.zip
++   DOWNLOAD_COMMAND ""
++   SOURCE_DIR "${POG_LOCAL_DIR}"
+    CMAKE_ARGS
+       # This does not work on MSVC, but may be useful on Linux.
+       -DCMAKE_BUILD_TYPE=Release
+       -DCMAKE_INSTALL_PREFIX=${POG_INSTALL_DIR}
+       -DPOG_DOWNLOAD_RE2=ON
+       -DPOG_DOWNLOAD_FMT=ON
++      -DRE2_LOCAL_DIR=${RE2_LOCAL_DIR}
++      -DFMTLIB_LOCAL_DIR=${FMTLIB_LOCAL_DIR}
+       -DPOG_PIC=ON
+       # Force the use of the same compiler as used to build the top-level
+       # project. Otherwise, the external project may pick up a different
