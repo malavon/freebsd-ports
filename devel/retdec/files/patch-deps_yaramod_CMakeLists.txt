@@ -1,0 +1,12 @@
+--- deps/yaramod/CMakeLists.txt.orig	2019-11-28 12:32:58 UTC
++++ deps/yaramod/CMakeLists.txt
+@@ -19,6 +19,9 @@ if(YARAMOD_LOCAL_DIR)
+ 			# Force the use of the same compiler as used to build the top-level
+ 			# project. Otherwise, the external project may pick up a different
+ 			# compiler, which may result in link errors.
++			-DFMTLIB_LOCAL_DIR=${FMTLIB_LOCAL_DIR}
++			-DRE2_LOCAL_DIR=${RE2_LOCAL_DIR}
++			-DPOG_LOCAL_DIR=${POG_LOCAL_DIR}
+ 			"${CMAKE_C_COMPILER_OPTION}"
+ 			"${CMAKE_CXX_COMPILER_OPTION}"
+ 		# Disable the update step.
