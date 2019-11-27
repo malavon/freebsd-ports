@@ -1,0 +1,32 @@
+--- ../yaracpp-3417c9e855ebb06096571f54175e33c5efb0f774/deps/CMakeLists.txt.orig	2019-07-09 13:05:33.000000000 +0200
++++ ../yaracpp-3417c9e855ebb06096571f54175e33c5efb0f774/deps/CMakeLists.txt	2019-11-27 23:54:22.348343000 +0100
+@@ -10,7 +10,7 @@
+ 
+ 	ProcessorCount(CPUS)
+ 
+-	set(YARA_DIR          ${CMAKE_CURRENT_BINARY_DIR}/yara/src/yara)
++	set(YARA_DIR          ${YARA_LOCAL_DIR})
+ 	set(YARA_INCLUDE_DIR  ${YARA_DIR}/libyara/include)
+ 	set(YARA_LIBRARY_NAME "libyara")
+ 
+@@ -40,9 +40,8 @@
+ 
+ 	ExternalProject_Add(yara
+ 		PREFIX "yara"
+-		URL https://github.com/avast/yara/archive/e3ae3848d66cdb551e149f1a87a45bcc87578f9c.zip
+-		URL_HASH SHA256=3acc49dc9c7f892b0d20c380727ac6f893e10d8e756924bb158db0531cac36fe
+-		DOWNLOAD_NAME yara.zip
++		DOWNLOAD_COMMAND ""
++		SOURCE_DIR "${YARA_DIR}"
+ 		BUILD_IN_SOURCE 1
+ 		CONFIGURE_COMMAND ""
+ 		BUILD_COMMAND ""
+@@ -64,7 +63,7 @@
+ 			WORKING_DIRECTORY ${YARA_DIR}
+ 			DEPENDEES configure
+ 			DEPENDERS build
+-			COMMAND ./bootstrap.sh
++			COMMAND ${CMAKE_INSTALL_PREFIX}/bin/autoreconf --force --install
+ 			COMMAND ./configure
+ 				--prefix=${YARA_INSTALL_DIR}
+ 				--enable-macho
