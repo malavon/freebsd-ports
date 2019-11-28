@@ -38,7 +38,9 @@ GH_TUPLE=		avast:capstone:27c713fe4f6eaf9721785932d850b6291a6073fe:capstone \
 			leethomason:tinyxml2:cc1745b552dd12bb1297a99f82044f83b06729e0:tinyxml \
 			metthal:pog:v0.5.0:pog \
 			open-source-parsers:jsoncpp:1.8.4:jsoncpp \
-			Tencent:rapidjson:v1.1.0:rapidjson
+			Tencent:rapidjson:v1.1.0:rapidjson \
+			keystone-engine:keystone:d7ba8e378e5284e6384fc9ecd660ed5f6532e922:keystone \
+			google:googletest:90a443f9c2437ca8a682a1ac625eba64e1d74a8a:googletest
 
 CMAKE_ARGS=		-DCAPSTONE_LOCAL_DIR=${WRKSRC_capstone} \
 			-DELFIO_LOCAL_DIR=${WRKSRC_elfio} \
