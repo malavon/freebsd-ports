@@ -1,4 +1,4 @@
---- deps/yaracpp/CMakeLists.txt.orig	2019-03-18 15:44:07 UTC
+--- deps/yaracpp/CMakeLists.txt.orig	2019-11-21 13:31:09 UTC
 +++ deps/yaracpp/CMakeLists.txt
 @@ -14,6 +14,8 @@ if(YARACPP_LOCAL_DIR)
  		DOWNLOAD_COMMAND ""
@@ -9,3 +9,12 @@
  			# This does not work on MSVC, but may be useful on Linux.
  			-DCMAKE_BUILD_TYPE=Release
  			# Force the use of the same compiler as used to build the top-level
+@@ -62,7 +64,7 @@ endif()
+ ExternalProject_Get_Property(yaracpp-project source_dir)
+ ExternalProject_Get_Property(yaracpp-project binary_dir)
+ 
+-set(YARA_DIR          ${binary_dir}/deps/yara/src/yara)
++set(YARA_DIR          ${YARA_LOCAL_DIR})
+ set(YARA_INCLUDE_DIR  ${YARA_DIR}/libyara/include)
+ set(YARA_LIBRARY_NAME "libyara")
+ 

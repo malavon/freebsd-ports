@@ -1,4 +1,4 @@
-TIMESTAMP = 1574959064
+TIMESTAMP = 1574967810
 SHA256 (avast-retdec-vxxx-b5f06019a8577cef131c5375a843b6f9974dad43_GH0.tar.gz) = 9997c92cd464e828695095bf2a6fb6729fc803b670720cae96afdb8083bd2a91
 SIZE (avast-retdec-vxxx-b5f06019a8577cef131c5375a843b6f9974dad43_GH0.tar.gz) = 8546795
 SHA256 (avast-capstone-27c713fe4f6eaf9721785932d850b6291a6073fe_GH0.tar.gz) = a8c6761b1dc1536b81cfd3d3463d4fb78b0bcad9b7ca3a8c26f05bda8105b5ac
@@ -29,6 +29,8 @@ SHA256 (open-source-parsers-jsoncpp-1.8.4_GH0.tar.gz) = c49deac9e0933bcb7044f085
 SIZE (open-source-parsers-jsoncpp-1.8.4_GH0.tar.gz) = 200226
 SHA256 (Tencent-rapidjson-v1.1.0_GH0.tar.gz) = bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
 SIZE (Tencent-rapidjson-v1.1.0_GH0.tar.gz) = 1019402
+SHA256 (avast-retdec-support-2019-03-08_GH0.tar.gz) = 938a1dffe729ea5991c52c35eadfdccb405aacc71664b86a96294272e2e851a0
+SIZE (avast-retdec-support-2019-03-08_GH0.tar.gz) = 1365
 SHA256 (keystone-engine-keystone-d7ba8e378e5284e6384fc9ecd660ed5f6532e922_GH0.tar.gz) = 24180af1a0e3e72766d7e7a23ecec1fad808764d25f015eff5c420a8016af28e
 SIZE (keystone-engine-keystone-d7ba8e378e5284e6384fc9ecd660ed5f6532e922_GH0.tar.gz) = 4404853
 SHA256 (google-googletest-90a443f9c2437ca8a682a1ac625eba64e1d74a8a_GH0.tar.gz) = b048f20cde9e31291b58b9890c65f6ad9f0a75c758bc842238490af4d4ed94b3
