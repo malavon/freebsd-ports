@@ -19,9 +19,6 @@ BUILD_DEPENDS=		aclocal:devel/automake \
 			libtool:devel/libtool \
 			bison:devel/bison
 
-# RUN_DEPENDS=		libfmt.so:devel/libfmt \
-# 			libre2.so:devel/re2
-
 USE_GITHUB=		yes
 GH_ACCOUNT=		avast
 GH_TAGNAME=		b5f06019a8577cef131c5375a843b6f9974dad43
@@ -42,12 +39,10 @@ GH_TUPLE=		avast:capstone:27c713fe4f6eaf9721785932d850b6291a6073fe:capstone \
 			keystone-engine:keystone:d7ba8e378e5284e6384fc9ecd660ed5f6532e922:keystone \
 			google:googletest:90a443f9c2437ca8a682a1ac625eba64e1d74a8a:googletest
 
-CMAKE_ARGS=		-D CMAKE_INSTALL_PREFIX:PATH=${PREFIX} \
-			-D CAPSTONE_LOCAL_DIR:PATH=${WRKSRC_capstone} \
+CMAKE_ARGS=		-D CAPSTONE_LOCAL_DIR:PATH=${WRKSRC_capstone} \
 			-D ELFIO_LOCAL_DIR:PATH=${WRKSRC_elfio} \
 			-D FMTLIB_LOCAL_DIR:PATH=${WRKSRC_fmtlib} \
 			-D JSONCPP_LOCAL_DIR:PATH=${WRKSRC_jsoncpp} \
-			-D KEYSTONE_LOCAL_DIR:PATH=${WRKSRC_keystone} \
 			-D LIBDWARF_LOCAL_DIR:PATH=${WRKSRC_libdwarf} \
 			-D LLVM_LOCAL_DIR:PATH=${WRKSRC_llvm} \
 			-D RAPIDJSON_LOCAL_DIR:PATH=${WRKSRC_rapidjson} \
@@ -57,7 +52,8 @@ CMAKE_ARGS=		-D CMAKE_INSTALL_PREFIX:PATH=${PREFIX} \
 			-D RE2_LOCAL_DIR:PATH=${WRKSRC_re2} \
 			-D YARA_LOCAL_DIR:PATH=${WRKSRC_yara} \
 			-D YARACPP_LOCAL_DIR:PATH=${WRKSRC_yaracpp} \
-			-D YARAMOD_LOCAL_DIR:PATH=${WRKSRC_yaramod}
+			-D YARAMOD_LOCAL_DIR:PATH=${WRKSRC_yaramod} \
+			-D CMAKE_INSTALL_STAGEDIR:PATH=${STAGEDIR} # this might look suspicious, but it's used in ptyhon scripts that install files and should do so to the staging directory as well
 
 OPTIONS_DEFINE=		DOCS GRAPHVIZ TESTS UPX YARA
 OPTIONS_DEFAULT=	DOCS YARA
@@ -76,7 +72,8 @@ TESTS_DESC=		build and execute tests
 TESTS_CMAKE_BOOL=	RETDEC_TESTS
 TESTS_GH_TUPLE=		google:googletest:90a443f9c2437ca8a682a1ac625eba64e1d74a8a:googletest \
 			keystone-engine:keystone:d7ba8e378e5284e6384fc9ecd660ed5f6532e922:keystone
-TESTS_CMAKE_ARGS=	-D GOOGLETEST_LOCAL_DIR:PATH=${WRKSRC_googletest}
+TESTS_CMAKE_ARGS=	-D GOOGLETEST_LOCAL_DIR:PATH=${WRKSRC_googletest} \
+			-D KEYSTONE_LOCAL_DIR:PATH=${WRKSRC_keystone}
 
 YARA_DESC=		YARA rules compilation at installation step
 YARA_CMAKE_BOOL=	RETDEC_COMPILE_YARA
