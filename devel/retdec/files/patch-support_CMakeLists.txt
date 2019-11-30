@@ -1,0 +1,20 @@
+--- support/CMakeLists.txt.orig	2019-11-30 03:05:16 UTC
++++ support/CMakeLists.txt
+@@ -5,7 +5,7 @@
+ #      developers.
+ 
+ set(CMAKE_INSTALL_MESSAGE LAZY)
+-set(SUPPORT_TARGET_DIR "${CMAKE_INSTALL_PREFIX}/share/retdec/support")
++set(SUPPORT_TARGET_DIR "${CMAKE_INSTALL_STAGEDIR}${CMAKE_INSTALL_PREFIX}/share/retdec/support")
+ 
+ # Clean support target directory if YARA compilation flag changed.
+ #
+@@ -22,7 +22,7 @@ endif()
+ install(CODE "
+ 	execute_process(
+ 		# -u = unbuffered -> print debug messages right away.
+-		COMMAND \"${PYTHON_EXECUTABLE}\" -u \"${CMAKE_SOURCE_DIR}/support/install-share.py\" \"${CMAKE_INSTALL_PREFIX}\"
++		COMMAND \"${PYTHON_EXECUTABLE}\" -u \"${CMAKE_SOURCE_DIR}/support/install-share.py\" \"${CMAKE_INSTALL_STAGEDIR}${CMAKE_INSTALL_PREFIX}\"
+ 		RESULT_VARIABLE INSTALL_SHARE_RES
+ 	)
+ 	if(INSTALL_SHARE_RES)
