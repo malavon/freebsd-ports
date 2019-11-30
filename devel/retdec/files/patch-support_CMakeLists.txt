@@ -1,20 +1,28 @@
 --- support/CMakeLists.txt.orig	2019-11-30 03:05:16 UTC
 +++ support/CMakeLists.txt
-@@ -5,7 +5,7 @@
- #      developers.
- 
- set(CMAKE_INSTALL_MESSAGE LAZY)
--set(SUPPORT_TARGET_DIR "${CMAKE_INSTALL_PREFIX}/share/retdec/support")
-+set(SUPPORT_TARGET_DIR "${CMAKE_INSTALL_STAGEDIR}${CMAKE_INSTALL_PREFIX}/share/retdec/support")
- 
- # Clean support target directory if YARA compilation flag changed.
- #
 @@ -22,7 +22,7 @@ endif()
  install(CODE "
  	execute_process(
  		# -u = unbuffered -> print debug messages right away.
 -		COMMAND \"${PYTHON_EXECUTABLE}\" -u \"${CMAKE_SOURCE_DIR}/support/install-share.py\" \"${CMAKE_INSTALL_PREFIX}\"
-+		COMMAND \"${PYTHON_EXECUTABLE}\" -u \"${CMAKE_SOURCE_DIR}/support/install-share.py\" \"${CMAKE_INSTALL_STAGEDIR}${CMAKE_INSTALL_PREFIX}\"
++		COMMAND \"${PYTHON_EXECUTABLE}\" -u \"${CMAKE_SOURCE_DIR}/support/install-share.py\" \"${BSD_STAGEDIR}${CMAKE_INSTALL_PREFIX}\" \"${BSD_WRKSRC}\"
  		RESULT_VARIABLE INSTALL_SHARE_RES
  	)
  	if(INSTALL_SHARE_RES)
+@@ -41,14 +41,14 @@ install(DIRECTORY ordinals/x86/ DESTINATION "${SUPPORT
+ 
+ # Install YARA rules for tools detection.
+ #
+-set(YARAC_PATH "${CMAKE_INSTALL_PREFIX}/bin/retdec-yarac${CMAKE_EXECUTABLE_SUFFIX}")
++set(YARAC_PATH "${BSD_STAGEDIR}${CMAKE_INSTALL_PREFIX}/bin/retdec-yarac${CMAKE_EXECUTABLE_SUFFIX}")
+ set(YARA_INSTALL_PY "${CMAKE_SOURCE_DIR}/support/install-yara.py")
+ 
+ install(CODE "
+ 	execute_process(
+ 		COMMAND \"${PYTHON_EXECUTABLE}\" -u \"${YARA_INSTALL_PY}\"
+ 			\"${YARAC_PATH}\"
+-			\"${SUPPORT_TARGET_DIR}\"
++			\"${BSD_STAGEDIR}${SUPPORT_TARGET_DIR}\"
+ 			\"${CMAKE_SOURCE_DIR}/support/yara_patterns\"
+ 			${RETDEC_COMPILE_YARA}
+ 		RESULT_VARIABLE INSTALL_YARA_RES
