@@ -5,6 +5,10 @@ DISTVERSION=		xxx
 DISTVERSIONPREFIX=	v
 CATEGORIES=		devel
 
+MASTER_SITES=    	https://github.com/avast/retdec-support/releases/download/2019-03-08/
+DISTFILES=		retdec-support_2019-03-08.tar.xz
+DIST_SUBDIR=		${PORTNAME}
+
 MAINTAINER=		benny.goemans@gmail.com
 COMMENT=		RetDec is a retargetable machine-code decompiler based on LLVM.
 
@@ -53,7 +57,8 @@ CMAKE_ARGS=		-D CAPSTONE_LOCAL_DIR:PATH=${WRKSRC_capstone} \
 			-D YARA_LOCAL_DIR:PATH=${WRKSRC_yara} \
 			-D YARACPP_LOCAL_DIR:PATH=${WRKSRC_yaracpp} \
 			-D YARAMOD_LOCAL_DIR:PATH=${WRKSRC_yaramod} \
-			-D CMAKE_INSTALL_STAGEDIR:PATH=${STAGEDIR} # this might look suspicious, but it's used in ptyhon scripts that install files and should do so to the staging directory as well
+			-D BSD_WRKSRC:PATH=${WRKSRC} \
+			-D BSD_STAGEDIR:PATH=${STAGEDIR} # this might look suspicious, but it's used in python scripts that install files during staging
 
 OPTIONS_DEFINE=		DOCS GRAPHVIZ TESTS UPX YARA
 OPTIONS_DEFAULT=	DOCS YARA
@@ -77,5 +82,10 @@ TESTS_CMAKE_ARGS=	-D GOOGLETEST_LOCAL_DIR:PATH=${WRKSRC_googletest} \
 
 YARA_DESC=		YARA rules compilation at installation step
 YARA_CMAKE_BOOL=	RETDEC_COMPILE_YARA
+
+post-extract:
+	# retdec-support is untarred by support/install-share.py into the stagedir
+	@${CP} ${DISTDIR}/${DIST_SUBDIR}/retdec-support_2019-03-08.tar.xz ${WRKSRC}/support
+
 
 .include <bsd.port.mk>
