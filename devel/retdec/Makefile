@@ -15,7 +15,7 @@ COMMENT=		RetDec is a retargetable machine-code decompiler based on LLVM.
 LICENSE=		MIT
 LICENSE_FILE=		${WRKSRC}/LICENSE
 
-USES=			cmake:noninja compiler:c++17-lang python:3.4+ shebangfix
+USES=			cmake:noninja compiler:c++17-lang python:3.4+ shebangfix ssl
 SHEBANG_GLOB=		*.py
 
 BUILD_DEPENDS=		aclocal:devel/automake \
