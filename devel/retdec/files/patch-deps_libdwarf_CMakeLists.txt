@@ -1,14 +1,14 @@
---- deps/libdwarf/CMakeLists.txt.orig	2019-11-30 19:06:22 UTC
+--- deps/libdwarf/CMakeLists.txt.orig	2019-11-21 13:31:09 UTC
 +++ deps/libdwarf/CMakeLists.txt
-@@ -75,7 +75,7 @@ elseif(MSYS)
- 	target_link_libraries(libdwarf INTERFACE ${LIBDWARF_INSTALL_DIR}/bin/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libdwarf${CMAKE_SHARED_LIBRARY_SUFFIX})
- 	target_link_libraries(libdwarf INTERFACE ${LIBDWARF_INSTALL_DIR}/bin/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libelf${CMAKE_SHARED_LIBRARY_SUFFIX})
- else() # Linux
--	target_link_libraries(libdwarf INTERFACE ${LIBDWARF_INSTALL_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libdwarf${CMAKE_SHARED_LIBRARY_SUFFIX})
-+ 	target_link_libraries(libdwarf INTERFACE ${LIBDWARF_INSTALL_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libdwarf${CMAKE_SHARED_LIBRARY_SUFFIX})
- 	target_link_libraries(libdwarf INTERFACE ${LIBDWARF_INSTALL_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libelf${CMAKE_SHARED_LIBRARY_SUFFIX})
+@@ -7,7 +7,7 @@ if(CMAKE_CXX_COMPILER)
+ 	set(CMAKE_CXX_COMPILER_OPTION "-DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}")
  endif()
  
+-set(LIBDWARF_INSTALL_DIR "${PROJECT_BINARY_DIR}/external/src/libdwarf-project-install")
++set(LIBDWARF_INSTALL_DIR "${BSD_STAGEDIR}${CMAKE_INSTALL_PREFIX}")
+ 
+ if(LIBDWARF_LOCAL_DIR)
+ 	message(STATUS "LibDwarf: using local LibDwarf directory.")
 @@ -84,5 +84,5 @@ if(MSVC)
  elseif(MSYS)
  	install(DIRECTORY "${LIBDWARF_INSTALL_DIR}/bin" DESTINATION "${CMAKE_INSTALL_PREFIX}")
