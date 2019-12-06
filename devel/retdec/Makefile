@@ -1,5 +1,8 @@
 # $FreeBSD$
 
+# diff -u ../libdwarf-85465d5e235cc2d2f90d04016d6aca1a452d0e73/libdwarf/CMakeLists.txt.orig ../libdwarf-85465d5e235cc2d2f90d04016d6aca1a452d0e73/libdwarf/CMakeLists.txt >> ../../files/patch-libdwarf_libdwarf_CMakeLists.txt
+# diff -u ../libdwarf-85465d5e235cc2d2f90d04016d6aca1a452d0e73/libelf/lib/CMakeLists.txt.orig ../libdwarf-85465d5e235cc2d2f90d04016d6aca1a452d0e73/libelf/lib/CMakeLists.txt > ../../files/patch-libdwarf_libelf_lib_CMakeLists.txt 
+
 PORTNAME=		retdec
 DISTVERSION=		xxx
 DISTVERSIONPREFIX=	v
