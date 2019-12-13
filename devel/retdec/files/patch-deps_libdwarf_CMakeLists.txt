@@ -1,26 +1,25 @@
---- deps/libdwarf/CMakeLists.txt.orig	2019-12-03 21:18:32 UTC
+--- deps/libdwarf/CMakeLists.txt.orig	2019-11-21 13:31:09 UTC
 +++ deps/libdwarf/CMakeLists.txt
-@@ -63,10 +63,10 @@ ExternalProject_Get_Property(libdwarf-project source_d
- ExternalProject_Get_Property(libdwarf-project binary_dir)
- 
- # Add libraries.
--add_library(libdwarf INTERFACE)
-+add_library(libdwarf IMPORTED SHARED)
- add_dependencies(libdwarf libdwarf-project)
- 
--target_include_directories(libdwarf SYSTEM INTERFACE ${source_dir}/libdwarf)
-+target_include_directories(libdwarf GLOBAL INTERFACE ${source_dir}/libdwarf)
- 
- if(MSVC)
- 	target_link_libraries(libdwarf INTERFACE ${binary_dir}/libdwarf/libdwarf/$<CONFIGURATION>/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libdwarf.lib)
-@@ -75,8 +75,8 @@ elseif(MSYS)
- 	target_link_libraries(libdwarf INTERFACE ${LIBDWARF_INSTALL_DIR}/bin/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libdwarf${CMAKE_SHARED_LIBRARY_SUFFIX})
- 	target_link_libraries(libdwarf INTERFACE ${LIBDWARF_INSTALL_DIR}/bin/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libelf${CMAKE_SHARED_LIBRARY_SUFFIX})
- else() # Linux
--	target_link_libraries(libdwarf INTERFACE ${LIBDWARF_INSTALL_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libdwarf${CMAKE_SHARED_LIBRARY_SUFFIX})
--	target_link_libraries(libdwarf INTERFACE ${LIBDWARF_INSTALL_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libelf${CMAKE_SHARED_LIBRARY_SUFFIX})
-+	target_link_libraries(libdwarf IMPORTED ${LIBDWARF_INSTALL_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libdwarf${CMAKE_SHARED_LIBRARY_SUFFIX})
-+	target_link_libraries(libdwarf IMPORTED ${LIBDWARF_INSTALL_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}retdec-libelf${CMAKE_SHARED_LIBRARY_SUFFIX})
- endif()
- 
- if(MSVC)
+@@ -24,8 +24,21 @@ if(LIBDWARF_LOCAL_DIR)
+ 			# compiler, which may result in link errors.
+ 			"${CMAKE_C_COMPILER_OPTION}"
+ 			"${CMAKE_CXX_COMPILER_OPTION}"
+-		# Disable the update step.
++			# This comes from ExternalProject.cmake:  The external project's install
++			# rules are not part of the main project's install rules, so if anything
++			# from the external project should be installed as part of the main build,
++			# these need to be specified in the main build as additional
++			# :command:`install` commands.
++			# Apparently that is not true, since the install command is still run during
++			# the project's install cycle. This results in files being installed to
++			# /wrkdirs/..../external/src/libdwarf-project-install.
++			# These of course do end up in the pkg-plist file, so that's a big no no.
++		BUILD_COMMAND make install
+ 		UPDATE_COMMAND ""
++		INSTALL_COMMAND ""
++		EXCLUDE_FROM_ALL ON
++		LOG_CONFIGURE ON
++		LOG_BUILD ON
+ 	)
+ 	force_configure_step(libdwarf-project)
+ else()
