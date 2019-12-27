@@ -70,6 +70,7 @@ GH_TUPLE=	mono:RefactoringEssentials:0148f6a:1/external/RefactoringEssentials \
 		mono:nuget-binary:ebedbf8:11/external/nuget-binary \
 		mono:xwt:cacc327:12/external/xwt
 
+
 INSTALL_TARGET=	install-strip
 MAKE_ENV=	DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR= \
 		XDG_CACHE_HOME=${WRKDIR} \
@@ -78,6 +79,8 @@ MAKE_ENV=	DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR= \
 MAKE_JOBS_UNSAFE=Build parallelization not implemented
 WRKSRC_SUBDIR=	main
 PORTSCOUT=	limit:^\d+\.\d+\.[1-9].*
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	${ECHO} "Release ID: ${PORTVERSION}" > ${WRKSRC}/buildinfo
