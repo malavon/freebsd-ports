@@ -1,0 +1,89 @@
+# Created by: Tom McLaughlin <tmclaugh@sdf.lonestar.org>
+# $FreeBSD$
+
+PORTNAME=	monodevelop
+PORTVERSION=	8.3.10.2
+DISTVERSIONPREFIX=	${PORTNAME}-
+PORTREVISION=	0
+CATEGORIES=	devel
+
+MAINTAINER=	mono@FreeBSD.org
+COMMENT=	IDE for the .NET platform
+
+LICENSE=	LGPL21
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	msbuild:devel/msbuild \
+		fsharpc:lang/fsharp \
+		cmake:devel/cmake
+LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libssh2.so:security/libssh2
+RUN_DEPENDS=	${LOCALBASE}/lib/libgdiplus.a:x11-toolkits/libgdiplus \
+		exctags:devel/ctags \
+		git:devel/git \
+		svn:devel/subversion \
+		fsharpc:lang/fsharp # msbuild
+
+# main/external/fsharpbinding/paket.lock
+NUGET_FEEDS=	NUGET ROSLYN ROSLYN_FOR_VS_FOR_MAC  TEMPLATING VS_IMPL VS_EDITOR VSSDK VSTEST
+NUGET_LAYOUT=	legacy
+VS_IMPL_URL=	https://vside.myget.org/F/vs-impl/api/v2/
+VS_EDITOR_URL=	https://www.myget.org/F/vs-editor/api/v2/
+VSSDK_URL=	https://vside.myget.org/F/vssdk/api/v2/
+PAKET_DEPENDS=	ExtCore=0.8.46 \
+		FAKE=4.61.1 \
+		FSharp.Compiler.CodeDom=0.9.2 \
+		FSharp.Compiler.Service=23.0.1 \
+		FSharp.Core=4.3.3 \
+		Fantomas=2.6.1 \
+		Mono.Cecil=0.10.0-beta6 \
+		Newtonsoft.Json=10.0.3 \
+		StrongNamer=0.0.6 \
+		System.Collections.Immutable=1.3.1 \
+		System.Reactive.Core=3.1.1 \
+		System.Reactive.Interfaces=3.1.1 \
+		System.Reactive.Linq=3.1.1 \
+		System.Reflection.Metadata=1.4.2 \
+		System.ValueTuple=4.4.0 \
+		YamlDotNet.Signed=4.0.1-pre291
+
+PAKET_PACKAGEDIR=${WRKSRC}/external/fsharpbinding/packages
+
+USES=		autoreconf desktop-file-utils gettext gmake gnome mono:nuget pathfix pkgconfig shared-mime-info ssl
+USE_GNOME=	gtksharp20 gnomesharp20
+INSTALLS_ICONS=	yes
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-release --disable-update-mimedb --disable-update-desktopdb \
+		--enable-maintainer-mode --enable-gnomeplatform --enable-git
+INSTALL=	/usr/bin/install
+USE_GITHUB=	yes
+GH_ACCOUNT=	mono
+GH_TUPLE=	mono:RefactoringEssentials:a2e8503:1/external/RefactoringEssentials \
+		xamarin:Xamarin.PropertyEditing:ca20882:2/external/Xamarin.PropertyEditing \
+		mono:debugger-libs:4bf1cb5:3/external/debugger-libs \
+		mono:guiunit:9affe48:4/external/guiunit \
+		mono:libgit-binary:2871279:6/external/libgit-binary \
+		mono:libgit2:71efcb3:7/external/libgit2 \
+		mono:libgit2sharp:7c156e1:8/external/libgit2sharp \
+		mono:mono-addins:fc2fb5d:9/external/mono-addins \
+		mono:mono-tools:d858f5f:x/external/mono-tools \
+		xamarin:NRefactory:60ac8e9:10/external/nrefactory \
+		mono:sharpsvn-binary:6e60e61:x/external/sharpsvn-binary \
+		microsoft:vs-editor-api:37988cd:xx/external/vs-editor-api \
+		mono:nuget-binary:7871fa2:11/external/nuget-binary \
+		mono:xwt:fa7e042:12/external/xwt
+
+INSTALL_TARGET=	install-strip
+MAKE_ENV=	DOTNET_MSBUILD_SDK_RESOLVER_SDKS_DIR= \
+		XDG_CACHE_HOME=${WRKDIR} \
+		OPENSSL_ROOT_DIR=${OPENSSLBASE} \
+		MONO_REGISTRY_PATH=${WRKDIR}
+MAKE_JOBS_UNSAFE=Build parallelization not implemented
+WRKSRC_SUBDIR=	main
+PORTSCOUT=	limit:^\d+\.\d+\.[1-9].*
+
+post-patch:
+	${ECHO} "Release ID: ${PORTVERSION}" > ${WRKSRC}/buildinfo
+
+.include <bsd.port.mk>
