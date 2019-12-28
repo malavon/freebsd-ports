@@ -14,8 +14,8 @@ LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	msbuild:devel/msbuild \
-		fsharpc:lang/fsharp \
 		cmake:devel/cmake
+#		fsharpc:lang/fsharp \
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libssh2.so:security/libssh2
 RUN_DEPENDS=	${LOCALBASE}/lib/libgdiplus.a:x11-toolkits/libgdiplus \
