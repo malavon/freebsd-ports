@@ -1,8 +1,8 @@
-TIMESTAMP = 1575113855
+TIMESTAMP = 1586382979
 SHA256 (retdec/retdec-support_2019-03-08.tar.xz) = 629351609bca0f4b8edbd4e53789192305256aeb908e953f5546e121a911d54e
 SIZE (retdec/retdec-support_2019-03-08.tar.xz) = 43473100
-SHA256 (retdec/avast-retdec-vxxx-b5f06019a8577cef131c5375a843b6f9974dad43_GH0.tar.gz) = 9997c92cd464e828695095bf2a6fb6729fc803b670720cae96afdb8083bd2a91
-SIZE (retdec/avast-retdec-vxxx-b5f06019a8577cef131c5375a843b6f9974dad43_GH0.tar.gz) = 8546795
+SHA256 (retdec/avast-retdec-v4.0-b5f06019a8577cef131c5375a843b6f9974dad43_GH0.tar.gz) = 9997c92cd464e828695095bf2a6fb6729fc803b670720cae96afdb8083bd2a91
+SIZE (retdec/avast-retdec-v4.0-b5f06019a8577cef131c5375a843b6f9974dad43_GH0.tar.gz) = 8546795
 SHA256 (retdec/avast-capstone-27c713fe4f6eaf9721785932d850b6291a6073fe_GH0.tar.gz) = a8c6761b1dc1536b81cfd3d3463d4fb78b0bcad9b7ca3a8c26f05bda8105b5ac
 SIZE (retdec/avast-capstone-27c713fe4f6eaf9721785932d850b6291a6073fe_GH0.tar.gz) = 3339007
 SHA256 (retdec/avast-elfio-f85f07390b756fee61408dfe0b04ae4fb86c5477_GH0.tar.gz) = 359edd7f1181925bd64280379aeef68a8f856bc39d558c0a9df685fa25dc7dba
