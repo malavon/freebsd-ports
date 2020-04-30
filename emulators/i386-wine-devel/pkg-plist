@@ -1,27 +1,3 @@
-bin/function_grep.pl
-bin/msidb
-bin/msiexec
-bin/notepad
-bin/regedit
-bin/regsvr32
-bin/widl
-bin/wine
-bin/wineboot
-bin/winebuild
-bin/winecfg
-bin/wineconsole
-bin/winecpp
-bin/winedbg
-bin/winedump
-bin/winefile
-bin/wineg++
-bin/winegcc
-bin/winemaker
-bin/winemine
-bin/winepath
-bin/wineserver
-bin/wmc
-bin/wrc
 bin32/function_grep.pl
 bin32/msidb
 bin32/msiexec
@@ -3165,6 +3141,7 @@ lib32/wine/xmllite.dll.so
 lib32/wine/xolehlp.dll.so
 lib32/wine/xpsprint.dll.so
 lib32/wine/xpssvcs.dll.so
+<<<<<<< HEAD
 man/de.UTF-8/man1/wine.1.gz
 man/de.UTF-8/man1/winemaker.1.gz
 man/de.UTF-8/man1/wineserver.1.gz
@@ -3327,3 +3304,4 @@ share/applications/wine.desktop
 %%DATADIR%%/winebus.inf
 %%DATADIR%%/winehid.inf
 %%DATADIR%%/wineusb.inf
+

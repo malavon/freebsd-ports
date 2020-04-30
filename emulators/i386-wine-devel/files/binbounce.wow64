@@ -1,0 +1,25 @@
+#!/bin/sh
+
+TARGET="`realpath $0`"
+
+LOCALBASE=${TARGET%/*}/..
+BINNAME=${TARGET##*/}
+
+if [ -z "$__BINBOUNCE_BOOTSTRAP" ]
+then
+  export LIBGL_DRIVERS_PATH=$LOCALBASE/lib32/dri
+  export LD_32_LIBRARY_PATH="$LOCALBASE/lib32":"$LOCALBASE/lib32/wine":"$LD_32_LIBRARY_PATH":/usr/lib32
+  export LD_32_LIBRARY_PATH_RPATH=y
+  export PATH="$LOCALBASE/bin32":"$PATH"
+  export __BINBOUNCE_BOOTSTRAP="1"
+
+  WINE32_VERSION=`$LOCALBASE/bin32/wine --version`
+  WINE64_VERSION=`wine64 --version`
+  if [ "$WINE32_VERSION" != "$WINE64_VERSION" ]
+  then
+    echo "Please, make sure that wine [$WINE32_VERSION] and wine64 [$WINE64_VERSION] versions match each other."
+    exit 1
+  fi
+fi
+
+exec "$LOCALBASE/bin32/$BINNAME" "$@"
