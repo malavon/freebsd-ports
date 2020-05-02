@@ -25,12 +25,11 @@ LIB_DEPENDS=	libFAudio.so:audio/faudio \
 USES=		bison desktop-file-utils gmake localbase pkgconfig shebangfix tar:xz
 USE_GCC=	yes
 
-CONFLICTS_INSTALL=	wine-[0-9]* i386-wine-[0-9]* i386-wine-devel-[0-9]*
+CONFLICTS_INSTALL=	wine-[0-9]* i386-wine-[0-9]*
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--verbose \
 		--disable-kerberos \
-		--disable-tests \
 		--without-alsa --without-capi --without-dbus \
 		--without-gettext --without-gettextpo \
 		--without-gphoto --without-gsm --without-gstreamer \
