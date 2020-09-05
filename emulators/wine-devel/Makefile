@@ -54,11 +54,13 @@ USE_LDCONFIG=	${WINELIBDIR} ${WINELIBDIR}/wine
 SHEBANG_FILES=	tools/make_requests tools/winemaker/winemaker \
 		tools/winedump/function_grep.pl
 
+TEST_TARGET=    test
+
 SUB_FILES=	pkg-message
 
 PORTDATA=	wine.inf
 
-OPTIONS_DEFINE=	CUPS DOCS DOSBOX GNUTLS LDAP LIBXSLT MPG123 OPENAL SDL STAGING V4L VKD3D VULKAN WINEMAKER X11 GECKO MONO
+OPTIONS_DEFINE=	CUPS DOCS DOSBOX GNUTLS LDAP LIBXSLT MPG123 OPENAL SDL STAGING V4L VKD3D VULKAN WINEMAKER X11 GECKO MONO TEST
 OPTIONS_DEFAULT=GNUTLS X11
 OPTIONS_SUB=	yes
 
@@ -127,6 +129,8 @@ X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2 \
 			liblcms2.so:graphics/lcms2 \
 			libpng.so:graphics/png
+
+TEST_CONFIGURE_OFF=     --disable-tests
 
 # Include this only if it has not been already included by the
 # i386-wine-devel slave port.
