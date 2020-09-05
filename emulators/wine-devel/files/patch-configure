@@ -1,0 +1,10 @@
+--- configure.orig	2020-08-28 20:16:24 UTC
++++ configure
+@@ -7498,7 +7498,6 @@ for ac_header in \
+ 	sys/statvfs.h \
+ 	sys/strtio.h \
+ 	sys/syscall.h \
+-	sys/sysinfo.h \
+ 	sys/tihdr.h \
+ 	sys/time.h \
+ 	sys/timeout.h \
