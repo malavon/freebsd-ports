@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	monodevelop
-PORTVERSION=	8.3.10.2
+PORTVERSION=	7.8.4.1
 DISTVERSIONPREFIX=	${PORTNAME}-
 PORTREVISION=	0
 CATEGORIES=	devel
@@ -14,8 +14,8 @@ LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	msbuild:devel/msbuild \
-		cmake:devel/cmake
-#		fsharpc:lang/fsharp \
+		fsharpc:lang/fsharp \
+		cmake:devel/cmake 
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libssh2.so:security/libssh2
 RUN_DEPENDS=	${LOCALBASE}/lib/libgdiplus.a:x11-toolkits/libgdiplus \
@@ -50,7 +50,7 @@ PAKET_DEPENDS=	ExtCore=0.8.46 \
 PAKET_PACKAGEDIR=${WRKSRC}/external/fsharpbinding/packages
 
 USES=		autoreconf desktop-file-utils gettext gmake gnome mono:nuget pathfix pkgconfig shared-mime-info ssl
-USE_GNOME=	gtksharp20 gnomesharp20
+USE_GNOME=	gtksharp20
 INSTALLS_ICONS=	yes
 
 GNU_CONFIGURE=	yes
