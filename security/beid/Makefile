@@ -14,7 +14,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libassuan.so:security/libassuan \
 		libcurl.so:ftp/curl \
 		libpcsclite.so:devel/pcsc-lite \
-		libproxy.so:net/libproxy
+		libproxy.so:net/libproxy \
+		libharfbuzz.so:print/harfbuzz \
+		libgpg-error.so:security/libgpg-error
 RUN_DEPENDS=	pinentry:security/pinentry
 
 USE_GITHUB=	yes
@@ -22,9 +24,11 @@ GH_ACCOUNT=	Fedict
 GH_PROJECT=	eid-mw
 
 USES=		autoreconf compiler:c++11-lang gettext-tools gmake gnome \
-		libtool pkgconfig ssl
-USE_GNOME=	gtk30 libxml2
+		libtool pkgconfig ssl shebangfix
+USE_GNOME=	gtk30 libxml2 cairo gdkpixbuf2
 GLIB_SCHEMAS=	eid-viewer.gschema.xml
+
+SHEBANG_FILES=	plugins_tools/chrome_pkcs11/beid-update-nssdb
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-p11kit --disable-static --with-gtkvers=3 \

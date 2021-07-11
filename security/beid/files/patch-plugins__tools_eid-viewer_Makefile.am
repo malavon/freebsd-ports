@@ -9,3 +9,4 @@
  AM_CXXFLAGS = $(AM_CFLAGS) -std=c++98
  SUBDIRS = . gtk/po test uml
  
+
