@@ -18,14 +18,16 @@ NOT_FOR_ARCHS=	riscv64 riscv64sf sparc64
 
 BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
 		bash:shells/bash \
+		brotli:archivers/brotli \
 		cmake>0:devel/cmake
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>=0:graphics/py-pillow@${PY_FLAVOR} \
+		brotli:archivers/brotli \
 		ca_root_nss>=0:security/ca_root_nss \
 		sqlite3>0:databases/sqlite3 \
 		zip>=0:archivers/zip
 
-CONFLICTS_BUILD=	brotli
+#CONFLICTS_BUILD=	brotli
 CONFLICTS_INSTALL=	certmgr coin-or-disco disco mono mono[0-9]*
 
 USES=	autoreconf bison compiler:c11 cpe gmake iconv libtool \
