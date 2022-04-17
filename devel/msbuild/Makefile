@@ -1,9 +1,9 @@
 PORTNAME=	msbuild
 DISTVERSIONPREFIX=	v
-DISTVERSION=	15.8-preview
+DISTVERSION=	17.1.0
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/mono/msbuild/releases/download/0.06/:bootstrap
-DISTFILES=	mono_msbuild_xplat-master-3c930fa8.zip:bootstrap
+MASTER_SITES=	https://github.com/mono/msbuild/releases/download/v16.9.0/:bootstrap
+DISTFILES=	mono_msbuild_xplat-master-d094b49.zip:bootstrap
 
 MAINTAINER=	mono@FreeBSD.org
 COMMENT=	Build platform for .NET and Visual Studio
@@ -20,10 +20,10 @@ NUGET_LAYOUT=	dotnet
 USES=		mono:nuget shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	mono
-GH_TAGNAME=	0.06
+GH_TAGNAME=	v16.9.0
 SHEBANG_FILES=	*.sh artifacts/mono-msbuild/msbuild build.sh build/*.sh
 
-MAKE_ENV=	GIT_COMMIT=3c930fa8721935cf0e381fd349f6f50cf2bc223d
+MAKE_ENV=	GIT_COMMIT=d094b49f5b5095efe15685431275b9c38fa6d845
 MAKE_JOBS_UNSAFE=MSBuild has not implemented concurrent builds on non Windows platforms
 ALL_TARGET=	all-mono
 TEST_TARGET=	test-mono
