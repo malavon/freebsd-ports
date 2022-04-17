@@ -1,0 +1,11 @@
+--- mono/metadata/Makefile.am.orig	2022-03-18 08:48:15.939444000 +0000
++++ mono/metadata/Makefile.am
+@@ -107,7 +107,7 @@ noinst_LTLIBRARIES = libmonoruntime-config.la $(suppor
+ 
+ lib_LTLIBRARIES = $(icall_table_libraries) $(ilgen_libraries)
+ 
+-AM_CPPFLAGS = -I$(top_srcdir) -I$(top_srcdir)/mono $(LIBGC_CPPFLAGS) $(GLIB_CFLAGS) $(SHARED_CFLAGS)
++AM_CPPFLAGS = -I$(top_srcdir) -I$(top_srcdir)/mono $(LIBGC_CPPFLAGS) $(GLIB_CFLAGS) $(SHARED_CFLAGS) $(METADATA_CFLAGS)
+ 
+ #
+ # Make sure any prefix changes are updated in the binaries too.

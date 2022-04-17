@@ -203,6 +203,7 @@
     SUBDIR += mono5.20
     SUBDIR += mono6
     SUBDIR += mono6.8
+    SUBDIR += mono-preview
     SUBDIR += mosh
     SUBDIR += mosml
     SUBDIR += mtasc
