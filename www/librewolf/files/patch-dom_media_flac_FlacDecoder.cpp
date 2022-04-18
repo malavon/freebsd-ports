@@ -17,7 +17,11 @@ Enable FLAC on platforms without ffvpx like powerpc*
 +#elif defined(MOZ_FFMPEG)
 +  RefPtr<PDMFactory> platform = new PDMFactory();
 +  return StaticPrefs::media_flac_enabled() &&
+<<<<<<< HEAD
 +         (platform->SupportsMimeType("audio/flac"_ns) != media::DecodeSupport::Unsupported);
+=======
++         platform->SupportsMimeType("audio/flac"_ns);
+>>>>>>> adcf919e80ab (temp port, doesn't link with external libs)
  #else
    return false;
  #endif

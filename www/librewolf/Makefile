@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 PORTNAME=	librewolf
 DISTVERSION=	109.0.1.2
 PORTREVISION=	2
@@ -25,14 +26,62 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
 		v4l_compat>0:multimedia/v4l_compat \
 		autoconf2.13:devel/autoconf2.13 \
+=======
+# $FreeBSD: $
+
+PORTNAME=	librewolf
+DISTVERSION=	99.0.1-3
+# PORTREVISION=	1
+# PORTEPOCH
+CATEGORIES=	www
+MASTER_SITES=	https://gitlab.com/api/v4/projects/32320088/packages/generic/${PORTNAME}-source/${DISTVERSION}/
+
+DISTFILES=	${DISTNAME}.source${EXTRACT_SUFX}
+
+MAINTAINER=	gecko@FreeBSD.org
+COMMENT=	Independent fork of Firefox, with the primary goals of privacy, security and user freedom.
+
+BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
+		nss>=3.76:security/nss \
+		icu>=70.1:devel/icu \
+		libevent>=2.1.8:devel/libevent \
+		harfbuzz>=3.4.0:print/harfbuzz \
+		graphite2>=1.3.14:graphics/graphite2 \
+		png>=1.6.37:graphics/png \
+		dav1d>=1.0.0:multimedia/dav1d \
+		libvpx>=1.8.2:multimedia/libvpx \
+		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
+		v4l_compat>0:multimedia/v4l_compat \
+		autoconf-2.13:devel/autoconf213 \
+>>>>>>> adcf919e80ab (temp port, doesn't link with external libs)
 		nasm:devel/nasm \
 		yasm:devel/yasm \
 		zip:archivers/zip
 
+<<<<<<< HEAD
+=======
+USE_GECKO=	gecko
+CONFLICTS_INSTALL=	firefox-esr firefox
+USE_MOZILLA=	-sqlite
+CFLAGS_powerpc64le=	-DSQLITE_BYTEORDER=1234
+# work around bindgen not finding ICU, e.g.
+# dist/include/mozilla/intl/ICU4CGlue.h:8:10: fatal error: 'unicode/uenum.h' file not found, err: true
+CONFIGURE_ENV+=	BINDGEN_CFLAGS="-I${LOCALBASE}/include"
+
+
+
+FIREFOX_ICON=		${MOZILLA}.png
+FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png
+FIREFOX_DESKTOP=	${MOZSRC}/taskcluster/docker/firefox-snap/firefox.desktop
+MOZ_OPTIONS=	--enable-application=browser
+
+
+>>>>>>> adcf919e80ab (temp port, doesn't link with external libs)
 .include "${.CURDIR}/../../www/firefox/Makefile.options"
 
 .include <bsd.port.options.mk>
 
+<<<<<<< HEAD
 .if ${ARCH} != powerpc64
 BUILD_DEPENDS+=	${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc++abi.a:devel/wasi-libcxx \
 		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc.a:devel/wasi-libc \
@@ -98,5 +147,37 @@ post-install:
 	${REINPLACE_CMD} -e 's|Firefox|Librewolf|g' ${STAGEDIR}${PREFIX}/share/applications/librewolf.desktop
 	${REINPLACE_CMD} -e 's|firefox|librewolf|g' ${STAGEDIR}${PREFIX}/share/applications/librewolf.desktop
 	${REINPLACE_CMD} -e 's|Icon=.*|Icon=${FIREFOX_ICON_SRC}|g' ${STAGEDIR}${PREFIX}/share/applications/librewolf.desktop
+=======
+.if ${ARCH} == powerpc64
+MOZ_OPTIONS+=   --disable-webrtc --without-wasm-sandboxed-libraries
+.else
+BUILD_DEPENDS+= ${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc++abi.a:devel/wasi-libcxx \
+                ${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc.a:devel/wasi-libc \
+                ${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/clang/${LLVM_VERSION}/lib/wasi/libclang_rt.builtins-wasm32.a:devel/wasi-compiler-rt${LLVM_DEFAULT}
+MOZ_OPTIONS+=   --with-wasi-sysroot=${LOCALBASE}/share/wasi-sysroot
+.endif
+
+MOZ_MK_OPTIONS+=	MOZ_DATA_REPORTING=0 \
+			MOZ_TELEMETRY_REPORTING=0 \
+			MOZ_CRASHREPORTER=0 \
+			MOZ_SERVICES_HEALTHREPORT=0
+
+post-patch:
+	@${REINPLACE_CMD} -e 's/%u/%U/' -e '/X-MultipleArgs/d' \
+		-e '/^Icon/s/=.*/=${FIREFOX_ICON:R}/' \
+		${FIREFOX_DESKTOP}
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/browser/app/nsBrowserApp.cpp
+
+pre-configure:
+	(mv ${WRKSRC}/mozconfig ${WRKSRC}/mozconfig.librewolf) # everything is in this makefile or already set in bsd.gecko.mk
+	(cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf-2.13)
+	(cd ${WRKSRC}/js/src/ && ${LOCALBASE}/bin/autoconf-2.13)
+
+post-install:
+	${INSTALL_DATA} ${FIREFOX_DESKTOP} ${STAGEDIR}${PREFIX}/share/applications/
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
+	${LN} -sf ${FIREFOX_ICON_SRC} ${STAGEDIR}${PREFIX}/share/pixmaps/${FIREFOX_ICON}
+>>>>>>> adcf919e80ab (temp port, doesn't link with external libs)
 
 .include <bsd.port.mk>
