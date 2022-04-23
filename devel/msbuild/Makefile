@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	17.1.0
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/mono/msbuild/releases/download/v16.9.0/:bootstrap
-DISTFILES=	mono_msbuild_xplat-master-d094b49.zip:bootstrap
+DISTFILES=	mono_msbuild_6.12.0.137.zip:bootstrap
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Build platform for .NET and Visual Studio
@@ -19,6 +19,7 @@ USES=		mono:nuget shebangfix
 NUGET_FEEDS=	DOTNET_CORE NUGET ROSLYN ROSLYN_TOOLS SYMREADER_CONVERTER
 NUGET_LAYOUT=	dotnet
 
+USES=		mono:nuget shebangfix tar
 USE_GITHUB=	yes
 GH_ACCOUNT=	mono
 GH_TAGNAME=	v16.9.0
