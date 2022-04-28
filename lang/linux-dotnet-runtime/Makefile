@@ -1,8 +1,8 @@
 PORTNAME?=	dotnet-runtime
-DISTVERSION?=	2.0.7
+DISTVERSION?=	3.1.24
 DISTVERSIONSUFFIX=	-linux-x64
 CATEGORIES=	lang
-MASTER_SITES?=	https://download.microsoft.com/download/E/F/7/EF7302FE-4F84-4529-9E3A-893450F76501/
+MASTER_SITES?=	https://download.visualstudio.microsoft.com/download/pr/6b5b39bd-27f6-4788-9e24-1f3b5d2bd4d2/3c65d1d1c5a57a0a3dbfe80ee512981b/
 PKGNAMEPREFIX=	linux-
 
 MAINTAINER=	mono@FreeBSD.org
