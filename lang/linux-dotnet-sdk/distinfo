@@ -1,3 +1,3 @@
-TIMESTAMP = 1529166946
-SHA256 (dotnet-sdk-2.1.201-linux-x64.tar.gz) = e246a289ea298fb154d781f1e55d676b9d64da0bb51a753eaec76807c02c3ba1
-SIZE (dotnet-sdk-2.1.201-linux-x64.tar.gz) = 170197700
+TIMESTAMP = 1651160878
+SHA256 (dotnet-sdk-3.1.418-linux-x64.tar.gz) = c2c45041d1556045fcc63d6351f887a6dff2e009a46f91ba413a63accd86244b
+SIZE (dotnet-sdk-3.1.418-linux-x64.tar.gz) = 121660196
