@@ -1,6 +1,6 @@
---- src/Build.OM.UnitTests/Definition/ProjectCollection_Tests.cs.orig	2018-05-02 18:19:31 UTC
+--- src/Build.OM.UnitTests/Definition/ProjectCollection_Tests.cs.orig	2021-03-27 12:05:30 UTC
 +++ src/Build.OM.UnitTests/Definition/ProjectCollection_Tests.cs
-@@ -1427,6 +1427,7 @@ namespace Microsoft.Build.UnitTests.OM.D
+@@ -1413,6 +1413,7 @@ namespace Microsoft.Build.UnitTests.OM.Definition
              Assert.True(dirtyRaised);
          }
  
@@ -8,7 +8,7 @@
          /// <summary>
          /// Verifies that the <see cref="ProjectCollection.Version"/> is correct.
          /// </summary>
-@@ -1442,6 +1443,7 @@ namespace Microsoft.Build.UnitTests.OM.D
+@@ -1428,6 +1429,7 @@ namespace Microsoft.Build.UnitTests.OM.Definition
              ProjectCollection.Version.Major.ShouldBe(expectedVersion.Major);
              ProjectCollection.Version.Minor.ShouldBe(expectedVersion.Minor);
          }
