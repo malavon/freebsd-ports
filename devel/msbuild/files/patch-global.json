@@ -1,0 +1,15 @@
+--- global.json.orig	2021-03-27 12:05:30 UTC
++++ global.json
+@@ -1,11 +1,6 @@
+ {
+   "tools": {
+-    "dotnet": "3.1.100",
+-    "runtimes": {
+-      "dotnet/x64": [
+-        "2.1.7"
+-      ]
+-    },
++    "dotnet": "3.1.418",
+     "vs": {
+       "version": "16.0"
+     }

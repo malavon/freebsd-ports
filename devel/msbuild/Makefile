@@ -21,7 +21,7 @@ USES=		mono:nuget shebangfix tar
 USE_GITHUB=	yes
 GH_ACCOUNT=	mono
 GH_TAGNAME=	v16.9.0
-SHEBANG_FILES=	*.sh artifacts/mono-msbuild/msbuild build.sh build/*.sh
+SHEBANG_FILES=	*.sh artifacts/mono-msbuild/msbuild build.sh
 
 MAKE_ENV=	GIT_COMMIT=d094b49f5b5095efe15685431275b9c38fa6d845
 MAKE_JOBS_UNSAFE=MSBuild has not implemented concurrent builds on non Windows platforms
