@@ -1,17 +1,12 @@
---- doc/examples/getcpu-override/Makefile.orig	2016-08-25 21:53:05 UTC
+--- doc/examples/getcpu-override/Makefile.orig	2022-05-07 14:23:50 UTC
 +++ doc/examples/getcpu-override/Makefile
-@@ -15,12 +15,8 @@
+@@ -8,8 +8,7 @@
  #
  # This makefile is purposefully kept simple to support GNU and BSD make.
  
--ifdef AM_CC
--	CC = $(AM_CC)
--endif
--
 -LIBS = -ldl	# On Linux
 -#LIBS = -lc	# On BSD
-+#LIBS = -ldl	# On Linux
-+LIBS =	# On FreeBSD
++LIBS = -lc	# On BSD
  LOCAL_CPPFLAGS += -I.
+ AM_V_P := :
  
- all: lttng-ust-getcpu-override-example.so
