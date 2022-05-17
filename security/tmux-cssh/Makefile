@@ -1,0 +1,32 @@
+# $FreeBSD$
+
+PORTNAME=	tmux-cssh
+PORTVERSION=	20220304
+PORTREVISION=	1
+CATEGORIES=	security
+
+MAINTAINER=	ports@malavon.eu
+COMMENT=	ClusterSSH features using tmux, but not X11
+
+LICENSE=	APACHE20
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+RUN_DEPENDS=	${LOCALBASE}/bin/tmux:sysutils/tmux
+
+NO_BUILD=	YES
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	malavon
+GH_TAGNAME=	5e5597d356d24b6ca1545c0b1347bde7c71da72a
+
+PLIST_FILES=	bin/tmux-cssh
+PORTDOCS=	README.md
+
+OPTIONS_DEFINE=	DOCS
+
+do-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/tmux-cssh ${STAGEDIR}${PREFIX}/bin
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
+
+.include <bsd.port.mk>
