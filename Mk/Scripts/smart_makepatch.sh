@@ -64,7 +64,7 @@ std_patch_filename() {
 	local raw_name
 	sans_cwd=$(echo $1 | sed 's|^\.\/||')
 	raw_name=$(strip_path ${sans_cwd})
-	echo "patch-$(echo ${raw_name} | sed -e 's|_|&&|g; s|/|_|g')"
+	echo "patch-$(echo ${raw_name} | sed -e 's|_|&&|g; s|/|_|g; s| ||g')"
 }
 
 patchdir_files_list() {
@@ -186,18 +186,21 @@ regenerate_patches() {
 	local OUT
 	local ORIG
 	local new_list
+	local OLD_IFS="${IFS}"
+	IFS=$'\n' # do NOT split on spaces!
 	new_list=$(cd "${PATCH_WRKSRC}" && \
-		find -s . -type f -name '*.orig' 2>/dev/null)
+		find -s . -type f -name '*.orig' -print 2>/dev/null)
 	(cd "${PATCH_WRKSRC}" && for F in ${new_list}; do
 		ORIG=${F#./}
 		NEW=${ORIG%.orig}
-		cmp -s ${ORIG} ${NEW} && continue
-		OUT=${REGENNED}/$(std_patch_filename ${NEW})
-		TZ=UTC diff -audp ${ORIG} ${NEW} | sed \
+		cmp -s "${ORIG}" "${NEW}" && continue
+		OUT=${REGENNED}/$(std_patch_filename "${NEW}")
+		TZ=UTC diff -audp "${ORIG}" "${NEW}" | sed \
 			-e '/^---/s|\.[0-9]* +0000$| UTC|' \
 			-e '/^+++/s|\([[:blank:]][-0-9:.+]*\)*$||' \
 			> ${OUT} || true
 	done)
+	IFS="${OLD_IFS}"
 }
 
 get_patch_name() {
