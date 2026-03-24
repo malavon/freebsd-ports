@@ -1,15 +1,16 @@
-PORTNAME=	eclipse
-DISTVERSION=	4.39
+PORTNAME=	codecomposerstudio
+DISTVERSION=	12.8.1.00005
 CATEGORIES=	java devel
-ECLIPSE_TAG=	R${DISTVERSION:S|.|_|g}
+ECLIPSE_TAG=R4_23
+# ECLIPSE_TAG=	R${ECLIPSE_VERSION:S|.|_|g}
 
 DIST_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	ngrundmann@gmx.de
-COMMENT=	Eclipse IDE
-WWW=		https://www.eclipse.org/
+MAINTAINER=	ports@malavon.eu
+COMMENT=	TI Code Composer Studio
+WWW=		TODOhttps://www.eclipse.org/
 
-LICENSE=	EPL
+LICENSE=	EPLTODO
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 
@@ -19,7 +20,7 @@ BUILD_DEPENDS=	git:devel/git \
 LIB_DEPENDS=	libsecret-1.so:security/libsecret
 RUN_DEPENDS=	webkit2-gtk_41>=0:www/webkit2-gtk@41
 
-USES=		compiler:c++17-lang gl gmake gnome java pkgconfig
+USES=		compiler:c++11-lang gl gmake gnome java pkgconfig
 # The github repositories.  The repository under NorbertXYZ is for a predefined maven
 # download, so the build does not need to download while do-build is running
 USE_GITHUB=	yes
@@ -41,13 +42,13 @@ USE_GL=		gl glu
 USE_GNOME=	gtk30 gtk40
 JAVA_VERSION=	21+
 
-DESKTOP_ENTRIES=	"Eclipse" \
-			"${COMMENT}" \
-			"${PORTNAME}" \
-			"${PORTNAME}" \
-			"Development;IDE;Java;" \
-			"false"
-PORTSCOUT=	ignore:1
+# DESKTOP_ENTRIES=	"Eclipse" \
+# 			"${COMMENT}" \
+# 			"${PORTNAME}" \
+# 			"${PORTNAME}" \
+# 			"Development;IDE;Java;" \
+# 			"false"
+# PORTSCOUT=	ignore:1
 SUB_FILES=	${PORTNAME}
 
 .include <bsd.port.pre.mk>
