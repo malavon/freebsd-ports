@@ -1,0 +1,22 @@
+--- Makefile.orig	2026-03-24 02:01:10 UTC
++++ Makefile
+@@ -1,6 +1,4 @@
+-CC=g++
+ CFLAGS=-std=c++0x -I./Inc
+-LDFLAGS=-L../ -lmsp430
+ SOURCES=MSP430_Flasher.cpp Support.cpp StdUseCase.cpp
+ OBJECTS=$(SOURCES:.cpp=.o)
+ EXECUTABLE=../MSP430Flasher
+@@ -8,10 +6,10 @@ $(EXECUTABLE): $(OBJECTS) 
+ all: $(SOURCES) $(EXECUTABLE)
+ 	
+ $(EXECUTABLE): $(OBJECTS) 
+-	$(CC) -o $@ $(CFLAGS) $(OBJECTS) $(LDFLAGS) 
++	$(CXX) -o $@ $(CFLAGS) $(OBJECTS) $(LDFLAGS) 
+ 
+ .cpp.o:
+-	$(CC) $(CFLAGS) -c $< -o $@
++	$(CXX) $(CFLAGS) -c $< -o $@
+ 
+ clean:
+ 	rm -rf *.o
