@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# This is a simple script to provide a lowercase MSP430Flasher executable. The upper-case variant is still on the path to be used in (portable) scripts.
+
+%%PREFIX%%/bin/MSP430Flasher $@ 
