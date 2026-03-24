@@ -1,0 +1,7 @@
+MSP Flasher is an open-source, shell-based interface for programming MSP devices
+through a FET programmer or eZ430 via JTAG or Spy Bi-Wire (SBW). MSP Flasher can
+be used to download binary files (.txt/.hex) directly to the target memory
+without the need of an IDE like CCS or IAR.
+
+It can also be used to extract firmware directly from a device and blow the JTAG
+fuse.
