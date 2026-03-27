@@ -1,0 +1,22 @@
+--- src/share/poudriere/html/assets/bootstrap-3.4.1/css/bootstrap.css.orig	2026-03-27 19:28:41 UTC
++++ src/share/poudriere/html/assets/bootstrap-3.4.1/css/bootstrap.css
+@@ -1085,8 +1085,8 @@ body {
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-size: 14px;
+   line-height: 1.42857143;
+-  color: #333333;
+-  background-color: #fff;
++  color: #ccc;
++  background-color: #222;
+ }
+ input,
+ button,
+@@ -1097,7 +1097,7 @@ a {
+   line-height: inherit;
+ }
+ a {
+-  color: #337ab7;
++  color: #cc8558;
+   text-decoration: none;
+ }
+ a:hover,
