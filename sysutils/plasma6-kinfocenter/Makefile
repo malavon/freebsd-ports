@@ -18,20 +18,21 @@ USE_KDE=	auth colorscheme completion config configwidgets coreaddons \
 		kirigami2:run systemsettings:run
 USE_QT=		base declarative
 
-OPTIONS_DEFINE=		AUX_UTILS
-OPTIONS_DEFAULT=	AUX_UTILS
+OPTIONS_DEFINE=		AUX_UTILS PULSE VULKAN WAYLAND
+OPTIONS_DEFAULT=	AUX_UTILS VULKAN
 
 AUX_UTILS_DESC=		Install auxiliary packages
 AUX_UTILS_RUN_DEPENDS=	clinfo:devel/clinfo \
 			glxinfo:graphics/mesa-demos \
 			lsblk:sysutils/lsblk \
 			lscpu:sysutils/lscpu \
-			pactl:audio/pulseaudio \
 			sensors:sysutils/sensors \
-			vulkaninfo:graphics/vulkan-tools \
-			wayland-info:graphics/wayland-utils \
 			xdpyinfo:x11/xdpyinfo \
 			${${ARCH}_RUN_DEPENDS}
+
+PULSE_RUN_DEPENDS=	pactl:audio/pulseaudio
+VULKAN_RUN_DEPENDS=	vulkaninfo:graphics/vulkan-tools
+WAYLAND_RUN_DEPENDS=	wayland-info:graphics/wayland-utils
 
 # Sync with sysutils/dmidecode
 .for s in aarch64 amd64 armv6 armv7 i386 riscv64 riscv64sf
