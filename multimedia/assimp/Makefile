@@ -21,6 +21,12 @@ CMAKE_ON=		ASSIMP_BUILD_MINIZIP # workaround for https://github.com/assimp/assim
 CMAKE_TESTING_ON=	ASSIMP_BUILD_TESTS
 CMAKE_TESTING_TARGET=	${ALL_TARGET} # hack to avoid target
 
+.if defined(WITH_DEBUG)
+PLIST_SUB+=	LIB_SUFFIX="d"
+.else
+PLIST_SUB+=	LIB_SUFFIX=""
+.endif
+
 post-test:
 	@cd ${BUILD_WRKSRC} && \
 		${BUILD_WRKSRC}/bin/unit
