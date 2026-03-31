@@ -43,6 +43,12 @@ pre-test:
 	    --no-same-owner --no-same-permissions
 	@${RLN} ${WRKSRC}/test ${CONFIGURE_WRKSRC}/test
 
+.if defined(WITH_DEBUG)
+PLIST_SUB+=	LIB_SUFFIX="d"
+.else
+PLIST_SUB+=	LIB_SUFFIX=""
+.endif
+
 post-test:
 	@cd ${BUILD_WRKSRC} && \
 		${BUILD_WRKSRC}/bin/unit
