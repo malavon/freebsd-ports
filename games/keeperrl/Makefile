@@ -1,10 +1,9 @@
 PORTNAME=	keeperrl
-PORTVERSION=	0.0.${ALPHA_VERSION}
-PORTREVISION=	6
+PORTVERSION=	1.0.19
 CATEGORIES=	games
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES=	c0fc69cbee72.patch:-p1
+#PATCHFILES=	c0fc69cbee72.patch:-p1
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Ambitious dungeon builder with roguelike elements
@@ -22,11 +21,10 @@ USES=		compiler:c++14-lang gl gmake localbase openal sdl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	miki151
-GH_TAGNAME=	alpha${ALPHA_VERSION}
+GH_TAGNAME=	1_0_hotfix_19
 USE_GL=		gl
 USE_SDL=	sdl2 image2
 
-ALPHA_VERSION=	23
 LIBS+=		-lexecinfo
 MAKE_ARGS=	DATA_DIR="${DATADIR}" GCC="${CXX}" \
 		LDFLAGS="${LDFLAGS}" RELEASE=true
