@@ -433,6 +433,7 @@
     SUBDIR += kdegames
     SUBDIR += kdiamond
     SUBDIR += kdominate
+    SUBDIR += keeperrl
     SUBDIR += kevedit
     SUBDIR += kfourinline
     SUBDIR += kgoldrunner
