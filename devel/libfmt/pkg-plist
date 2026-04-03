@@ -16,7 +16,7 @@ lib/cmake/fmt/fmt-config-version.cmake
 lib/cmake/fmt/fmt-config.cmake
 lib/cmake/fmt/fmt-targets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/fmt/fmt-targets.cmake
-lib/libfmt.so
-lib/libfmt.so.12
-lib/libfmt.so.%%PORTVERSION%%
+lib/libfmt%%LIB_SUFFIX%%.so
+lib/libfmt%%LIB_SUFFIX%%.so.12
+lib/libfmt%%LIB_SUFFIX%%.so.%%PORTVERSION%%
 libdata/pkgconfig/fmt.pc
