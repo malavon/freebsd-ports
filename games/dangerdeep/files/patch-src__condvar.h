@@ -1,6 +1,6 @@
---- ./src/condvar.h.orig	2007-06-11 11:16:23.000000000 -0400
-+++ ./src/condvar.h	2014-08-11 09:56:15.000000000 -0400
-@@ -43,13 +43,13 @@
+--- src/condvar.h.orig	2007-06-11 15:16:23 UTC
++++ src/condvar.h
+@@ -43,13 +43,13 @@ class condvar
  
  	/// wait on condition
  	///@param m - mutex to encapsulate waiting condition

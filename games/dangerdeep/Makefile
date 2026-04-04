@@ -1,6 +1,3 @@
-# Created by: Jose Alonso Cardenas Marquez <acardenas@bsd.org.pe>
-# $FreeBSD$
-
 PORTNAME=	dangerdeep
 PORTVERSION=	0.3.0
 PORTREVISION=	16
@@ -14,7 +11,7 @@ COMMENT=	Open source World War II German submarine simulation
 LIB_DEPENDS=	libfftw3.so:math/fftw3
 RUN_DEPENDS=	dangerdeep-data>0:games/dangerdeep-data
 
-USES=		compiler gl scons sdl
+USES=		compiler:c++11-lang gl scons sdl
 USE_GL=		glu
 USE_SDL=	sdl mixer image net
 
@@ -48,9 +45,10 @@ do-install:
 		${INSTALL_PROGRAM} dangerdeep crosssection damagemodel oceantest \
 			portal viewmodel ${STAGEDIR}${PREFIX}/bin
 
+	${MKDIR} ${STAGEDIR}${PREFIX}/man/man6
 	${INSTALL_MAN} ${WRKSRC}/doc/man/dangerdeep.6 ${STAGEDIR}${PREFIX}/man/man6
-	${GZIP_CMD} ${STAGEDIR}${PREFIX}/man/man6/dangerdeep.6
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${GZIP_CMD} ${STAGEDIR}${PREFIX}/man/man6/dangerdeep.6
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>
