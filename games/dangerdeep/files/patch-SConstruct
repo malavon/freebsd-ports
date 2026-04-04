@@ -52,7 +52,7 @@
  	libpath = [LOCALBASE + '/lib', X11BASE + '/lib'] 
  	gllibs = ['GL', 'GLU']
  	sdllibs = ['SDL_image']
-@@ -79,46 +79,47 @@ elif (sys.platform == 'freebsd5') or (sys.platform == 
+@@ -79,46 +79,48 @@ elif (sys.platform == 'freebsd5') or (sys.platform == 
  	cpuinfol = cpuinfof.readlines()
  	mmxsupported = False
  	ssesupported = False
@@ -84,6 +84,7 @@
 -        datadir = '/usr/local/share/dangerdeep'
 -        build_dir = 'freebsd'
 +	env.Replace(CXXFLAGS = os.environ['CXXFLAGS'] + ' --std=c++11 `' + SDL_CONFIG + ' --cflags`')
++	env.Append(CXXFLAGS =  ' --std=c++11 -Wno-deprecated-declarations')
 +	env.Append(LINKFLAGS = '`' + SDL_CONFIG + ' --libs`')
 +	env.Append(LIBPATH = [LOCALBASE + '/lib', X11BASE + '/lib'])
 +	datadir = '/usr/local/share/dangerdeep'
@@ -128,7 +129,7 @@
  	env = Environment(ENV = os.environ)
  	env.Append(CPPPATH = ['/usr/include/SDL', '/usr/include/GL'])
  	libpath = ['/usr/X11R6/lib']
-@@ -145,13 +146,13 @@ else:
+@@ -145,13 +147,13 @@ else:
  	# choose specific architecture if requested
  	if archflag != '':
  		ccflags += ' -march=' + archflag
@@ -145,7 +146,7 @@
  	if (cvedit == 1):
  		env.Append(CPPDEFINES = ['CVEDIT'])
  	# check for mmx/sse support
-@@ -174,12 +175,12 @@ else:
+@@ -174,12 +176,12 @@ else:
  		osspecificsrc += []
  		if (usex86sse >= 2):
  			env.Append(CPPDEFINES = ['USE_SSE_ALWAYS'])
@@ -161,7 +162,7 @@
  	# check for broken libGL, ignore undefined symbols then
  	if (os.system('grep glBindProgram /usr/include/GL/gl*.h > /dev/null') == 0):
  		gllibdirs = ['/usr/X11R6/lib/', '/usr/lib/', '/usr/local/lib/']
-@@ -189,11 +190,11 @@ else:
+@@ -189,11 +191,11 @@ else:
  				gllibdir = i
  				break
  		if (gllibdir == ''):
@@ -176,7 +177,7 @@
  			# I'm not sure which option will hopefully fix the problem... so i use both...
  			env.Append(LINKFLAGS = '--unresolved-symbols=ignore-all')
  			env.Append(LINKFLAGS = '-Xlinker --unresolved-symbols -Xlinker ignore-all')
-@@ -205,38 +206,38 @@ if ARGUMENTS.get('installbindir', 0):
+@@ -205,38 +207,38 @@ if ARGUMENTS.get('installbindir', 0):
  if ARGUMENTS.get('installbindir', 0):
  	installbindir = ARGUMENTS.get('installbindir', 0)
  
@@ -226,7 +227,7 @@
  		fftwlib = 'fftw3f'
  		conf.env.Append(CPPDEFINES = ['WITH_FLOAT_FFTW'])
  else:
-@@ -273,9 +274,9 @@ Export('env', 'gfxlibs', 'alllibs', 'installbindir', '
+@@ -273,9 +275,9 @@ Export('env', 'gfxlibs', 'alllibs', 'installbindir', '
  
  Export('env', 'gfxlibs', 'alllibs', 'installbindir', 'datadir', 'version', 'osspecificsrc')
  
@@ -238,7 +239,7 @@
  
  ############### Helper functions
  def findCVS(basedir):
-@@ -304,7 +305,7 @@ def findCVS(basedir):
+@@ -304,7 +306,7 @@ def findCVS(basedir):
  
  ############### option so that "scons tarball" builds a tarball of source
  # tar building works only on linux
