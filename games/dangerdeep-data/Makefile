@@ -1,13 +1,10 @@
-# Created by: Jose Alonso Cardenas Marquez <acm@FreeBSD.org>
-# $FreeBSD$
-
 PORTNAME=	dangerdeep-data
 PORTVERSION=	0.3.0
 CATEGORIES=	games
 MASTER_SITES=	SF/dangerdeep/danger_from_the_deep-data/${PORTVERSION}
 DIST_SUBDIR=	dangerdeep
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@malavon.eu
 COMMENT=	Danger from the Deep data files
 
 LICENSE=	CC-BY-NC-ND-2.5

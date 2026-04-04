@@ -1,6 +1,6 @@
---- ./src/faulthandler.h.orig	2007-06-11 14:29:30.000000000 -0400
-+++ ./src/faulthandler.h	2014-08-11 10:17:47.000000000 -0400
-@@ -46,6 +46,7 @@
+--- src/faulthandler.h.orig	2007-06-11 18:29:30 UTC
++++ src/faulthandler.h
+@@ -46,6 +46,7 @@ void install_segfault_handler()
  #include <execinfo.h>
  #include <stdio.h>
  #include <stdlib.h>
