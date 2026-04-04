@@ -1,5 +1,5 @@
---- ./src/thread.h.orig	2007-06-11 11:16:23.000000000 -0400
-+++ ./src/thread.h	2014-08-11 10:14:00.000000000 -0400
+--- src/thread.h.orig	2007-06-11 15:16:23 UTC
++++ src/thread.h
 @@ -25,6 +25,7 @@
  
  #include "condvar.h"
@@ -8,7 +8,7 @@
  #include <stdint.h>
  
  /// base class for threads.
-@@ -47,7 +48,7 @@
+@@ -47,7 +48,7 @@ class thread
  	struct SDL_Thread* thread_id;
  	bool thread_abort_request;
  	thread_state_t thread_state;
