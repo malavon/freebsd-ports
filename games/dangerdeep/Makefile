@@ -2,17 +2,20 @@ PORTNAME=	dangerdeep
 PORTVERSION=	0.3.0
 PORTREVISION=	16
 CATEGORIES=	games
-MASTER_SITES=	SF/${PORTNAME}/danger_from_the_deep-src/${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/danger_from_the_deep-src/${PORTVERSION}:game \
+		SF/${PORTNAME}/danger_from_the_deep-data/${PORTVERSION}:data
+DISTFILES=	${DISTNAME}.tar.gz:game \
+		${PORTNAME}-data-${DISTVERSIONPREFIX}${DISTVERSION}.zip:data
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@malavon.eu
 COMMENT=	Open source World War II German submarine simulation
 
-LIB_DEPENDS=	libfftw3.so:math/fftw3
-RUN_DEPENDS=	dangerdeep-data>0:games/dangerdeep-data
+LIB_DEPENDS=	libfftw3f.so:math/fftw3-float \
+		libtinyxml.so:textproc/tinyxml
 
 USES=		compiler:c++11-lang gl scons sdl
-USE_GL=		glu
+USE_GL=		gl glu
 USE_SDL=	sdl mixer image net
 
 CXXFLAGS+=	${CXXFLAGS_${CHOSEN_COMPILER_TYPE}}
@@ -20,13 +23,10 @@ CXXFLAGS_clang=	-Wno-c++11-narrowing
 MAKE_ARGS=	installbindir=${PREFIX}/bin installdatadir=${DATADIR}
 MAKE_ENV=	X11BASE=${LOCALBASE}
 
-PLIST_FILES=	bin/dangerdeep bin/crosssection bin/damagemodel \
-		bin/oceantest bin/portal bin/viewmodel \
-		man/man6/dangerdeep.6.gz
-
 PORTDOCS=	CREDITS README
 
 OPTIONS_DEFINE=	DOCS
+OPTIONS_SUB=	yes
 
 .include <bsd.port.pre.mk>
 
@@ -45,10 +45,12 @@ do-install:
 		${INSTALL_PROGRAM} dangerdeep crosssection damagemodel oceantest \
 			portal viewmodel ${STAGEDIR}${PREFIX}/bin
 
-	${MKDIR} ${STAGEDIR}${PREFIX}/man/man6
-	${INSTALL_MAN} ${WRKSRC}/doc/man/dangerdeep.6 ${STAGEDIR}${PREFIX}/man/man6
+	cd ${WRKDIR}/data && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/
+
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/man6
+	${INSTALL_MAN} ${WRKSRC}/doc/man/dangerdeep.6 ${STAGEDIR}${PREFIX}/share/man/man6
+	${GZIP_CMD} ${STAGEDIR}${PREFIX}/share/man/man6/dangerdeep.6
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${GZIP_CMD} ${STAGEDIR}${PREFIX}/man/man6/dangerdeep.6
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>
