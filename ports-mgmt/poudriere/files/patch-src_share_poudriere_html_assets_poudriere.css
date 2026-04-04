@@ -90,7 +90,7 @@
      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
      line-height: normal;
 +    background-color: #111;
-+    color: #acdc;
++    color: #dead;
  }
  
  /* Avoid loading_overlay shift when scrollbar loads: http://stackoverflow.com/a/3677433/285734 */
@@ -117,7 +117,7 @@
  
  table.dataTable.display tbody tr.odd {
 -    background-color: #e2e4ff;
-+    background-color: #456;
++    background-color: #554455;
  }
  
  table.dataTable.display tbody tr.odd td.sorting_1 {
