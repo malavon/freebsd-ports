@@ -17,7 +17,7 @@
  configuration "bsd"
  	libdirs {
 -		"/usr/local/lib",
-+		"bin/Release", "/usr/local/lib",
++		"bin/Debug", "/usr/local/lib",
  	}
  	includedirs {
  		"/usr/local/include",
