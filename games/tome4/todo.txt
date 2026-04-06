@@ -1,0 +1,13 @@
+find out why tome4 stars with white screen
+	well, solvable by settings resolution in files manually to Borderless
+	(or 800x600 Windowed and correcting in-game)
+simple: ensure that it is set to Borderless instead of fullscreen on non-win/macos
+
+ALSO:
+does not do anything at 100% loading? ... after starting new game
+	well, once it did; complained about not enough memory :p with 5Gb free
+	when stuck at 100% is at < 300Mb of mem; also 100% CPU btw (single-core)
+		but goes up 1Mb/top refresh (5 seconds)
+			memory leak? endless loop?
+			goes back down from about 400Mb or so
+			in-game memory compression? file compression? first-time use stuff??
