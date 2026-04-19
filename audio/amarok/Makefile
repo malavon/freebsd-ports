@@ -80,4 +80,3 @@ IGNORE=		EMBEDDED option requires MariaDB
 .endif
 
 .include <bsd.port.post.mk>
-
