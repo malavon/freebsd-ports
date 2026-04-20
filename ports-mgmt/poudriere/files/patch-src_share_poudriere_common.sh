@@ -17,6 +17,17 @@
  	            "PHASE" "TMPFS" "CPU%" "MEM%"
  
  	# Skip if stopping or starting jobs or stopped.
+@@ -1540,8 +1541,8 @@ siginfo_handler() {
+ 			} \
+ 			END { \
+ 				for (jail in cpu) { \
+-					print jail, cpu[jail], mem[jail]; \
+-				} \
++					print jail, (cpu[jail] == 0 ? "0" : sprintf("%.1f", cpu[jail])), (mem[jail] == 0 ? "0" : sprintf("%.1f", mem[jail])); \
++		            } \
+ 			} \
+ 		    ')
+ 		EOF
 @@ -1551,17 +1552,7 @@ siginfo_handler() {
  		$(env BLOCKSIZE=512 df -t tmpfs 2>/dev/null | \
  		  awk -v MASTERMNTROOT="${MASTERMNTROOT}" ' \
