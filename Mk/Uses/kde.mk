@@ -329,7 +329,7 @@ _USE_PLASMA6_ALL=	activities activities-stats activitymanagerd \
 			layer-shell-qt libkscreen libksysguard libplasma \
 			milou ocean-sound-theme oxygen oxygen-sounds \
 			plasma-browser-integration plasma-desktop \
-			plasma-disks plasma-integration plasma-pa \
+			plasma-disks plasma-integration \
 			plasma-sdk plasma-workspace \
 			plasma-workspace-wallpapers plasma5support \
 			polkit-kde-agent-1 powerdevil print-manager \
