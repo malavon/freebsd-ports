@@ -378,7 +378,9 @@ _USE_PLASMA6lts_ALL=	activities activities-stats activitymanagerd \
 			plasma-workspace-wallpapers plasma5support \
 			polkit-kde-agent-1 powerdevil print-manager \
 			qqc2-breeze-style sddm-kcm spectacle systemmonitor \
-			systemsettings wayland xdg-desktop-portal-kde
+			systemsettings xdg-desktop-portal-kde
+_USE_PLASMA6_OPT=	wayland
+_USE_PLASMA6lts_OPT=	wayland
 _USE_PLASMA_ALL=	${_USE_PLASMA${_PLASMA_VER}_ALL}
 
 # List of frequently used components of the KDE Gears distribution.
