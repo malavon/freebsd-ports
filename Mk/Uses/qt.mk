@@ -150,8 +150,10 @@ _QT_MK_POST_INCLUDED=	qt.mk
 _USE_QT_COMMON=		3d charts connectivity datavis3d declarative doc \
 			examples imageformats location multimedia networkauth \
 			quick3d quicktimeline remoteobjects scxml sensors \
-			serialbus serialport speech svg virtualkeyboard wayland \
+			serialbus serialport speech svg virtualkeyboard \
 			webchannel webengine websockets webview
+
+_USE_QT_OPT=		wayland
 
 _USE_QT5_ONLY=		assistant buildtools concurrent core dbus \
 			declarative-test designer diag gamepad \
@@ -451,7 +453,7 @@ _USE_QT=		${USE_QT}
 # Iterate through components deprived of suffix.
 .  for component in ${_USE_QT:O:u:C/:(build|run|test)$//}
 # Check that the component is valid.
-.    if ${_USE_QT_ALL:M${component}} != ""
+.    if ${_USE_QT_ALL:M${component}} != "" || ${_USE_QT_OPT:M${component}} != ""
 # Skip meta-components (currently none).
 .      if defined(qt-${component}_PORT) && (defined(qt-${component}_PATH) || defined(qt-${component}_LIB))
 # Check if a dependency type is explicitly requested.
