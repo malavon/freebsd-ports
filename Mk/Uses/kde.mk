@@ -293,9 +293,10 @@ _USE_FRAMEWORKS5_ALL=	activities activities-stats apidox archive attica \
 			plotting prison pty purpose qqc2-desktop-style \
 			runner service solid sonnet syndication \
 			syntaxhighlighting texteditor textwidgets \
-			threadweaver unitconversion wallet wayland \
+			threadweaver unitconversion wallet \
 			widgetsaddons windowsystem xmlgui xmlrpcclient \
 			${_USE_PORTINGAIDS_ALL}
+_USE_FRAMEWORKS5_OPT=	wayland
 
 _USE_FRAMEWORKS6_ALL=	apidox archive attica auth baloo bookmarks \
 			breeze-icons calendarcore codecs colorscheme \
@@ -313,6 +314,7 @@ _USE_FRAMEWORKS6_ALL=	apidox archive attica auth baloo bookmarks \
 			textwidgets threadweaver unitconversion userfeedback \
 			wallet widgetsaddons windowsystem xmlgui
 _USE_FRAMEWORKS_ALL=	${_USE_FRAMEWORKS${_KDE_VERSION}_ALL}
+_USE_FRAMEWORKS_OPT=	${_USE_FRAMEWORKS${_KDE_VERSION}_OPT}
 
 # List of components of the KDE Plasma distribution.
 _USE_PLASMA5_ALL=	libksysguard oxygen-sounds
@@ -332,8 +334,10 @@ _USE_PLASMA6_ALL=	activities activities-stats activitymanagerd \
 			plasma-workspace-wallpapers plasma5support \
 			polkit-kde-agent-1 powerdevil print-manager \
 			qqc2-breeze-style sddm-kcm spectacle systemmonitor \
-			systemsettings wayland xdg-desktop-portal-kde
+			systemsettings xdg-desktop-portal-kde
+_USE_PLASMA6_OPT=	wayland
 _USE_PLASMA_ALL=	${_USE_PLASMA${_KDE_VERSION}_ALL}
+_USE_PLASMA_OPT=	${_USE_PLASMA${_KDE_VERSION}_OPT}
 
 # List of frequently used components of the KDE Gears distribution.
 _USE_GEAR6_ALL=		baloo-widgets kosm kpublictransport \
@@ -367,12 +371,17 @@ _USE_KDE5_ALL=		${_USE_FRAMEWORKS_ALL} \
 			${_USE_PLASMA_ALL} \
 			${_USE_GEAR_ALL} \
 			${_USE_KDE_EXTRA_ALL}
+_USE_KDE5_OPT=		${_USE_FRAMEWORKS_OPT} \
+			${_USE_PLASMA_OPT}
 
 _USE_KDE6_ALL=		${_USE_FRAMEWORKS_ALL}  \
 			${_USE_PLASMA_ALL} \
 			${_USE_KDEPIM_ALL} \
 			${_USE_GEAR_ALL} \
 			${_USE_KDE_EXTRA_ALL}
+_USE_KDE6_OPT=		${_USE_FRAMEWORKS_OPT}  \
+			${_USE_PLASMA_OPT}
+
 
 # ====================== frameworks components =================================
 kde-activities_PORT5=		x11/kf${_KDE_VERSION}-kactivities
@@ -1015,11 +1024,12 @@ kde-phonon-vlc_TYPE=	run
 # end of component list ########################################################
 
 _USE_KDE_ALL=	${_USE_${_KDE_RELNAME}_ALL}
+_USE_KDE_OPT=	${_USE_${_KDE_RELNAME}_OPT}
 
 # Iterate through components deprived of suffix.
 .    for component in ${USE_KDE:O:u:C/:.+//}
   # Check that the component is valid.
-.      if ${_USE_KDE_ALL:M${component}} != ""
+.      if ${_USE_KDE_ALL:M${component}} != "" || ${_USE_KDE_OPT:M${component}} != ""
    # Skip meta-components (currently none).
 .        if defined(kde-${component}_PORT) && (defined(kde-${component}_PATH) || defined(kde-${component}_LIB))
     # Check if a dependency type is explicitly requested.
