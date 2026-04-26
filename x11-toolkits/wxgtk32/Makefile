@@ -1,7 +1,7 @@
 PORTNAME=	wx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.2.8.1
-PORTREVISION=	1
+DISTVERSION=	3.3.2
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	https://github.com/wxWidgets/wxWidgets/releases/download/v${DISTVERSION}/
 PKGNAMESUFFIX=	${_SHORT_WX_VER}-${FLAVOR}
@@ -46,13 +46,12 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-epollloop \
 		--disable-joystick \
 		--enable-backtrace \
-		--enable-compat28 \
 		--enable-compat30 \
 		--enable-graphics_ctx \
 		--enable-ipv6 \
 		--enable-optimise \
-		--enable-std_string \
-		--enable-unicode \
+		--enable-std_string_conv_in_wxstring \
+		--enable-utf8 \
 		--with-expat=sys \
 		--with-libjpeg=sys \
 		--with-liblzma \
