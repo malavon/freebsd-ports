@@ -60,7 +60,8 @@ CONFIGURE_ARGS=	--disable-epollloop \
 		--with-nanosvg \
 		--with-opengl \
 		--with-zlib=sys \
-		--without-gnomevfs
+		--without-gnomevfs \
+		--without-wayland # should be option
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=no \
 		X11BASE="${LOCALBASE}"
 
