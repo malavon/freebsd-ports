@@ -1,0 +1,10 @@
+--- util/flashrom_udev.rules.orig	2026-07-12 21:41:11 UTC
++++ util/flashrom_udev.rules
+@@ -92,6 +92,7 @@ ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5512", MOD
+ 
+ # Winchiphead (WCH) CH341a based programmer
+ ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5512", MODE="664", GROUP="plugdev"
++ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="5523", MODE="664", GROUP="plugdev"
+ 
+ # Winchiphead (WCH) CH347 based programmer
+ ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="55db", MODE="664", GROUP="plugdev"
