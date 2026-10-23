@@ -1,8 +1,8 @@
 PORTNAME=	ghidra
-DISTVERSION=	12.0.4
+DISTVERSION=	12.2
 CATEGORIES=	devel security java
 MASTER_SITES=	https://github.com/NationalSecurityAgency/${PORTNAME}/releases/download/Ghidra_${DISTVERSION}_build/
-DISTNAME=	${PORTNAME}_${DISTVERSION}_PUBLIC_20260303
+DISTNAME=	${PORTNAME}_${DISTVERSION}_PUBLIC_20261016
 
 MAINTAINER=	tiga@FreeBSD.org
 COMMENT=	Software reverse engineering (SRE) framework
