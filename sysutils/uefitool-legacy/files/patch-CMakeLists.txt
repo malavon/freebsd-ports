@@ -1,0 +1,96 @@
+--- CMakeLists.txt.orig	2026-11-07 02:53:52 UTC
++++ CMakeLists.txt
+@@ -0,0 +1,93 @@
++CMAKE_MINIMUM_REQUIRED(VERSION 3.22)
++
++PROJECT(UEFITool LANGUAGES C CXX)
++
++SET(CMAKE_CXX_STANDARD 11)
++SET(CMAKE_CXX_STANDARD_REQUIRED ON)
++SET(CMAKE_CXX_EXTENSIONS OFF)
++
++FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Widgets)
++
++SET(PROJECT_FORMS
++searchdialog.ui
++uefitool.ui
++ )
++
++SET(PROJECT_HEADERS 
++basetypes.h
++descriptor.h
++ffs.h
++ffsengine.h
++gbe.h
++guidlineedit.h
++me.h
++messagelistitem.h
++peimage.h
++searchdialog.h
++treeitem.h
++treemodel.h
++types.h
++uefitool.h
++version.h
++)
++
++SET(PROJECT_SOURCES 
++ uefitool.rc
++descriptor.cpp
++ffs.cpp
++ffsengine.cpp
++guidlineedit.cpp
++messagelistitem.cpp
++peimage.cpp
++searchdialog.cpp
++treeitem.cpp
++treemodel.cpp
++types.cpp
++uefitool.cpp
++uefitool_main.cpp
++LZMA/LzmaCompress.c
++LZMA/LzmaDecompress.c
++LZMA/SDK/C/Bra86.c
++LZMA/SDK/C/LzFind.c
++LZMA/SDK/C/LzmaDec.c
++LZMA/SDK/C/LzmaEnc.c
++Tiano/EfiTianoCompress.c
++Tiano/EfiTianoCompressLegacy.c
++Tiano/EfiTianoDecompress.c
++)
++
++
++ADD_DEFINITIONS(
++ -DU_ENABLE_NVRAM_PARSING_SUPPORT
++ -DU_ENABLE_ME_PARSING_SUPPORT
++ -DU_ENABLE_FIT_PARSING_SUPPORT
++ -DU_ENABLE_GUID_DATABASE_SUPPORT
++)
++
++SET_SOURCE_FILES_PROPERTIES(icons/uefitool.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
++
++ADD_EXECUTABLE(UEFITool ${PROJECT_HEADERS} ${PROJECT_FORMS} ${PROJECT_SOURCES})
++
++TARGET_INCLUDE_DIRECTORIES(UEFITool PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
++
++TARGET_LINK_LIBRARIES(UEFITool PRIVATE Qt6::Widgets)
++
++# ADD_SUBDIRECTORY(QHexView)
++# TARGET_LINK_LIBRARIES(UEFITool PRIVATE QHexView)
++
++SET_TARGET_PROPERTIES(UEFITool PROPERTIES
++ WIN32_EXECUTABLE ON
++ MACOSX_BUNDLE ON
++ MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist"
++ AUTOMOC ON
++ AUTOUIC ON
++)
++
++# ADD_SUBDIRECTORY(UEFIReplace)
++# ADD_SUBDIRECTORY(UEFIPatch)
++
++IF(UNIX AND (NOT APPLE) AND (NOT CYGWIN))
++ SET_TARGET_PROPERTIES(UEFITool PROPERTIES OUTPUT_NAME uefitool)
++ENDIF()
++
++INSTALL(TARGETS UEFITool BUNDLE DESTINATION "/Applications" )
