@@ -1505,6 +1505,7 @@
     SUBDIR += libsigc++20
     SUBDIR += libsigc++30
     SUBDIR += libsigrok
+    SUBDIR += libsigrok-devel
     SUBDIR += libsigrokdecode
     SUBDIR += libsigscan
     SUBDIR += libsigsegv
