@@ -535,6 +535,7 @@
     SUBDIR += sirius
     SUBDIR += smith
     SUBDIR += smoldyn
+    SUBDIR += smuview
     SUBDIR += sparta
     SUBDIR += spglib
     SUBDIR += spheral
