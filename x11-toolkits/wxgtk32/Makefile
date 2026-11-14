@@ -62,7 +62,7 @@ CONFIGURE_ARGS=	--disable-epollloop \
 		--with-opengl \
 		--with-zlib=sys \
 		--without-gnomevfs
-CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=no \
+CONFIGURE_ENV=	wx_cv_inotify_usable=no \
 		X11BASE="${LOCALBASE}"
 
 _SOVER=		0.4.1
