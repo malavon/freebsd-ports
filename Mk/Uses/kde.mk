@@ -382,6 +382,7 @@ _USE_PLASMA6lts_ALL=	activities activities-stats activitymanagerd \
 			qqc2-breeze-style sddm-kcm spectacle systemmonitor \
 			systemsettings xdg-desktop-portal-kde
 _USE_PLASMA6_OPT=	wayland
+_USE_PLASMA6lts_OPT=	wayland
 _USE_PLASMA_ALL=	${_USE_PLASMA${_PLASMA_VER}_ALL}
 _USE_PLASMA_OPT=	${_USE_PLASMA${_PLASMA_VER}_OPT}
 
