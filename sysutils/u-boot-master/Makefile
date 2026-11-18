@@ -287,7 +287,14 @@ CONFIG_FRAGMENT=	${FILESDIR}/${FRAGMENT_NAME}
 .if defined(CONFIG_FRAGMENT)
 do-configure:
 	${CP} ${CONFIG_FRAGMENT} ${WRKSRC}/configs/
-	(cd ${WRKSRC}; ${SETENV} ${CONFIGURE_ENV} ${MAKE_ENV} scripts/kconfig/merge_config.sh configs/${BOARD_CONFIG} configs/${FRAGMENT_NAME})
+	# Defconfigs may include shared configuration files.  Expand them
+	# as U-Boot's %_defconfig target does before merging the fragment.
+	(cd ${WRKSRC}; ${SETENV} ${CONFIGURE_ENV} ${MAKE_ENV} \
+	    ${CROSS_COMPILE}gcc -E -nostdinc -P -I . -undef \
+	    -x assembler-with-cpp configs/${BOARD_CONFIG} -o freebsd_defconfig)
+	${REINPLACE_CMD} -e 's/^[[:space:]]//' ${WRKSRC}/freebsd_defconfig
+	(cd ${WRKSRC}; ${SETENV} ${CONFIGURE_ENV} ${MAKE_ENV} ${ARCHFLAGS} \
+	    scripts/kconfig/merge_config.sh freebsd_defconfig configs/${FRAGMENT_NAME})
 .else
 do-configure:
 	(cd ${WRKSRC}; ${SETENV} ${CONFIGURE_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${BOARD_CONFIG})
